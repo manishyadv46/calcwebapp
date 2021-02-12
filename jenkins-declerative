@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    
+    environment{
+    path=" /opt/maven/apache-maven-3.6.3/bin"
+    }
         stages{
             stage("git checkout"){
                 
@@ -7,6 +11,13 @@ pipeline{
             steps{
                 git 'https://github.com/manishyadv46/calcwebapp.git'
             }    
+            }
+            stage("maven build"){
+                steps{
+                sh "mvn clean package"
+            }
+            
+            
             }
         }
     
